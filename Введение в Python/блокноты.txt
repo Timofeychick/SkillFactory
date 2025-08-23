@@ -1,0 +1,5 @@
+DSPR_Блок_1_Модуль_2._Погружение_в_типы_данных:
+https://colab.research.google.com/drive/1j2L2u9Z2KO5FGFYx6RkMX0fR4elMwtuJ?hl=ru#scrollTo=b1g6mnu7VOZ4&uniqifier=1
+
+Прикольные задачки с курса:
+https://colab.research.google.com/drive/18g0l1KPwkw6BDfa7tqmcq6Vtg1wV0Ghg?usp=sharing
