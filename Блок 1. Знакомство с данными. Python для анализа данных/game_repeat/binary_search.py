@@ -1,41 +1,41 @@
 import numpy as np
 
-def predict_number(number: int = 1) -> int:
+random_number = np.random.randint(1, 101)  # загадали число от 1 до 100
+
+def bin_search(num: int = 1) -> int:
+
     count = 0
     ref_value = 50
-    step = 25   # начальный шаг
-
+    step = 25
+    
     while True:
-        if number > ref_value:
+        
+        if num > ref_value:
             ref_value += step
-        elif number < ref_value:
+        elif num < ref_value:
             ref_value -= step
         else:
             break  # угадали
-
+        
         count += 1
-
-        # уменьшаем шаг, но не даём ему стать меньше 1
         step = max(step // 2, 1)
-
+        
+    # print(f"Вы угадали число {num} за {count} попыток!")
     return count
 
+# bin_search(random_number)
 
-
-def game_score(predict_number) -> int:
+def mean_game_score(func) -> int:
     
-    count_ls = []
+    counts = []
     np.random.seed(1)  # фиксируем сид для воспроизводимости
     random_array = np.random.randint(1, 101, size=(1000))  # загадали список чисел
-
+    
     for number in random_array:
-        count_ls.append(predict_number(number))
-
-    score = int(np.mean(count_ls))
+        counts.append(func(number))
+        
+    score = int(np.mean(counts))
     print(f"Ваш алгоритм угадывает число в среднем за:{score} попыток")
     return score
-            
-            
-if __name__ == "__main__":
-    # RUN
-    game_score(predict_number)
+
+mean_game_score(bin_search)
