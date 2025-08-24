@@ -1,21 +1,31 @@
 import numpy as np
 
+""" Игра "Угадай число":
+Компьютер сам загадывает и угадывает число от 1 до 100"""
+
 random_number = np.random.randint(1, 101)  # загадали число от 1 до 100
 
 def bin_search(num: int = 1) -> int:
+    """Функция угадывает число методом бинарного поиска
 
-    count = 0
-    ref_value = 50
-    step = 25
+    Входные параметры:
+        num (int, optional): Угадываемое число. Поумолчанию значение 1.
+
+    Функция возвращает:
+        int: количество попыток, за которое компьютер угадывает число
+    """
+    count = 0                   # счетчик попыток
+    ref_value = 50              # начальное значение для сравнения
+    step = 25                   # шаг изменения значения для сравнения
     
     while True:
         
-        if num > ref_value:
+        if num > ref_value:     # если загаданное число больше текущего значения
             ref_value += step
-        elif num < ref_value:
+        elif num < ref_value:   # если загаданное число меньше текущего значения
             ref_value -= step
-        else:
-            break  # угадали
+        else:                   # угадали
+            break   
         
         count += 1
         step = max(step // 2, 1)
@@ -23,19 +33,32 @@ def bin_search(num: int = 1) -> int:
     # print(f"Вы угадали число {num} за {count} попыток!")
     return count
 
-# bin_search(random_number)
+
 
 def mean_game_score(func) -> int:
+    """Функция для определения среднего количества попыток угадывания числа
+    за 1000 подходов
+
+    Параметры:
+        func (_type_): Эта функция принимает на вход алгоритм (функцию),
+        который должен угадывать число
+
+    Функция возвращает:
+        int: среднее количество попыток угадывания числа
+    """
     
     counts = []
-    np.random.seed(1)  # фиксируем сид для воспроизводимости
+    np.random.seed(1)                                      # фиксируем сид для воспроизводимости
     random_array = np.random.randint(1, 101, size=(1000))  # загадали список чисел
     
-    for number in random_array:
-        counts.append(func(number))
+    for number in random_array:                            # перебираем загаданые числа
+        counts.append(func(number))                        # получаем количество попыток для каждого числа
         
-    score = int(np.mean(counts))
+    score = int(np.mean(counts))                           # находим среднее количество попыток
     print(f"Ваш алгоритм угадывает число в среднем за:{score} попыток")
     return score
 
-mean_game_score(bin_search)
+
+if __name__ == "__main__":
+    # RUN
+    mean_game_score(bin_search)
